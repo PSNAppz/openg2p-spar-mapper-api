@@ -31,3 +31,24 @@ class BenefitClassificationCodeForAgency(BaseORMModelWithTimes):
 
     agency_id: Mapped[int] = mapped_column(Integer())
     benefit_classification_code_id: Mapped[str] = mapped_column(Integer())
+
+class RegionCodeForAgency(BaseORMModelWithTimes):
+    __tablename__ = "region_code_for_agency"
+    __table_args__ = (
+        UniqueConstraint("agency_id", "region_code_id", name="uq_agency_region_code"),
+    )
+
+    agency_id: Mapped[int] = mapped_column(Integer())
+    region_code_id: Mapped[str] = mapped_column(Integer())
+
+class AgencyForBeneficiary(BaseORMModelWithTimes):
+    __tablename__ = "agency_for_beneficiary"
+    __table_args__ = (
+        UniqueConstraint("beneficiary_id", "benefit_code_id", name="uq_agency_beneficiary"),
+    )
+    
+    beneficiary_id: Mapped[int] = mapped_column(Integer())
+    benefit_code_id: Mapped[int] = mapped_column(Integer())
+    agency_id: Mapped[int] = mapped_column(Integer())
+
+

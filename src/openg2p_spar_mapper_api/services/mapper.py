@@ -210,6 +210,8 @@ class MapperService(BaseService):
         async with session.begin():
             resolve_request_message: ResolveRequestMessage = resolve_request.message
 
+            only_direct_credit_allowed: bool = resolve_request_message.only_direct_credit_allowed
+
             # Collect all ID values for bulk query
             id_values = [
                 single_resolve_request.id
