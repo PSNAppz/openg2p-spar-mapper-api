@@ -170,6 +170,7 @@ class MapperController(BaseController):
                 resolve_request, e, e.validation_error_type, e.message
             )
         except Exception as e:
+            raise e
             _logger.error(f"Internal server error during resolve operation: {str(e)}")
             return ResponseHelper.get_component().construct_resolve_error_response(
                 resolve_request, e, "rjct.internal.error", "Internal server error"
