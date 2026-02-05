@@ -139,7 +139,7 @@ class MapperController(BaseController):
     async def resolve(
         self,
         resolve_request: ResolveRequest,
-        is_signature_valid: Annotated[bool, Depends(JWTSignatureValidator())],
+        is_signature_valid: bool = True,
     ) -> ResolveResponse:
         """
         Resolve ID to Financial Address
