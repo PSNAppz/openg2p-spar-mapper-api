@@ -16,7 +16,7 @@ from openg2p_spar_mapper_core.services import (
     RequestValidation,
 )
 from openg2p_spar_models.models import (
-    IdFaMapping,
+    IdFaMapping, Strategy
 )
 
 from .controllers import MapperController
@@ -44,5 +44,6 @@ class Initializer(BaseInitializer):
         async def migrate():
             _logger.info("Migrating database")
             await IdFaMapping.create_migrate()
+            await Strategy.create_migrate()
 
         asyncio.run(migrate())
