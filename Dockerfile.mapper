@@ -31,7 +31,7 @@ RUN python -m pip install --upgrade pip setuptools wheel && \
       git+https://github.com/openg2p/openg2p-fastapi-common@v1.1.5#subdirectory=openg2p-fastapi-auth-models \
       git+https://github.com/openg2p/openg2p-fastapi-common@v1.1.5#subdirectory=openg2p-fastapi-auth \
       git+https://github.com/openg2p/openg2p-fastapi-common@v1.1.5#subdirectory=openg2p-fastapi-partner-auth \
-      git+https://github.com/openg2p/openg2p-fastapi-common@v1.1.5#subdirectory=openg2p-fastapi-common && \
+      git+https://github.com/psnappz/openg2p-fastapi-common@1.1-beneportal#subdirectory=openg2p-fastapi-common && \
     python -m pip install --no-cache-dir -e /app/openg2p-spar-models && \
     python -m pip install --no-cache-dir -e /app/openg2p-spar-mapper-core && \
     python -m pip install --no-cache-dir -e /app/openg2p-spar-mapper-api
@@ -44,10 +44,10 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV G2P_SPAR_MAPPER_API_HOST=0.0.0.0
 ENV G2P_SPAR_MAPPER_API_PORT=8000
-ENV G2P_SPAR_MAPPER_API_NO_OF_WORKERS=1
+ENV G2P_SPAR_MAPPER_API_NO_OF_WORKERS=4
 
 # Set working directory to the mapper API
 WORKDIR /app/openg2p-spar-mapper-api
 
 # Run application
-CMD ["sh", "-c", "gunicorn main:app --preload --workers ${G2P_SPAR_MAPPER_API_NO_OF_WORKERS} --worker-class uvicorn.workers.UvicornWorker --bind ${G2P_SPAR_MAPPER_API_HOST}:${G2P_SPAR_MAPPER_API_PORT} --access-logfile - --error-logfile -"]
+CMD ["sh", "-c", "python3 main.py migrate; gunicorn main:app --preload --workers ${G2P_SPAR_MAPPER_API_NO_OF_WORKERS} --worker-class uvicorn.workers.UvicornWorker --bind ${G2P_SPAR_MAPPER_API_HOST}:${G2P_SPAR_MAPPER_API_PORT} --access-logfile - --error-logfile -"]
