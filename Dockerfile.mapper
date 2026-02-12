@@ -28,9 +28,9 @@ ADD --chown=${container_user}:${container_user_group} openg2p-spar-mapper-api /a
 # Install Python dependencies
 RUN python -m pip install --upgrade pip setuptools wheel && \
     python -m pip install --no-cache-dir \
-      git+https://github.com/openg2p/openg2p-fastapi-common@1.1-beneportal#subdirectory=openg2p-fastapi-auth-models \
-      git+https://github.com/openg2p/openg2p-fastapi-common@1.1-beneportal#subdirectory=openg2p-fastapi-auth \
-      git+https://github.com/openg2p/openg2p-fastapi-common@1.1-beneportal#subdirectory=openg2p-fastapi-partner-auth \
+      git+https://github.com/psnappz/openg2p-fastapi-common@1.1-beneportal#subdirectory=openg2p-fastapi-auth-models \
+      git+https://github.com/psnappz/openg2p-fastapi-common@1.1-beneportal#subdirectory=openg2p-fastapi-auth \
+      git+https://github.com/psnappz/openg2p-fastapi-common@1.1-beneportal#subdirectory=openg2p-fastapi-partner-auth \
       git+https://github.com/psnappz/openg2p-fastapi-common@1.1-beneportal#subdirectory=openg2p-fastapi-common && \
     python -m pip install --no-cache-dir -e /app/openg2p-spar-models && \
     python -m pip install --no-cache-dir -e /app/openg2p-spar-mapper-core && \
